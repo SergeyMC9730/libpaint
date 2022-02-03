@@ -116,7 +116,7 @@ var savepaint = (uid, id, raw, info = [], isAlreadyAdded = false) => {
 	if(!isAlreadyAdded) raw2 = `${new Buffer.from(info[0], 'utf8').toString('hex')}00${new Buffer.from(info[1], 'utf8').toString('hex')}00${raw}`
 	if(isAlreadyAdded) raw2 = raw
     var data = new Buffer.from(raw2, 'hex')
-    fs.writeFileSync(`./paint/savefiles/${id}.pntng`, data)
+    fs.writeFileSync(`./libpaint/savefiles/${id}.pntng`, data)
 }
 
 var convertpaint = () => {
