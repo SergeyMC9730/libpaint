@@ -6,11 +6,11 @@ var libb = require('./lib')
 var figures = require('./obj')
 var getpainting = (uid = 0, id = 0) => {
     try {
-        fs.readFileSync(`./paint/savefiles/${id}.pntng`).toString('hex')
+        fs.readFileSync(`./libpaint/savefiles/${id}.pntng`).toString('hex')
     } catch (e){
         return {error: "File Not Found", code: 404}
     }
-    var painting = fs.readFileSync(`./paint/savefiles/${id}.pntng`).toString('hex')
+    var painting = fs.readFileSync(`./libpaint/savefiles/${id}.pntng`).toString('hex')
     var info = {
         name: "",
         author: "",
@@ -124,7 +124,7 @@ var convertpaint = () => {
 }
 var includesP = (p) => {
 	try {
-		fs.readFileSync(`./paint/savefiles/${p}.pntng`)
+		fs.readFileSync(`./libpaint/savefiles/${p}.pntng`)
 		return true
 	} catch (err) {
 		return false
@@ -133,11 +133,11 @@ var includesP = (p) => {
 
 var getuserpaintings = (uid) => {
     try {
-        fs.readFileSync("./paint/savefiles/list.json")
+        fs.readFileSync("./libpaint/savefiles/list.json")
     } catch (e) {
         return {error: "File Not Found", code: 404}
     }
-    var list = JSON.parse(fs.readFileSync("./paint/savefiles/list.json").toString('utf8'))
+    var list = JSON.parse(fs.readFileSync("./libpaint/savefiles/list.json").toString('utf8'))
     return list[uid]
 }
 
@@ -150,18 +150,18 @@ var iserr = (ret) => {
 var savefs = {
 	list: {
 		rsvdt: () => { //read save data
-			return JSON.parse(fs.readFileSync("./paint/savefiles/list.json").toString('utf8'))
+			return JSON.parse(fs.readFileSync("./libpaint/savefiles/list.json").toString('utf8'))
 		},
 		wsvdt: (sfs) => { //write save data
-			fs.writeFileSync("./paint/savefiles/list.json", JSON.stringify(sfs))
+			fs.writeFileSync("./libpaint/savefiles/list.json", JSON.stringify(sfs))
 		}
 	},
 	user: {
 		rsvdt: () => { //read save data
-			return JSON.parse(fs.readFileSync("./paint/savefiles/users.json").toString('utf8'))
+			return JSON.parse(fs.readFileSync("./libpaint/savefiles/users.json").toString('utf8'))
 		},
 		wsvdt: (ufs) => { //write save data
-			fs.writeFileSync("./paint/savefiles/users.json", JSON.stringify(ufs))
+			fs.writeFileSync("./libpaint/savefiles/users.json", JSON.stringify(ufs))
 		}	
 	}
 }
